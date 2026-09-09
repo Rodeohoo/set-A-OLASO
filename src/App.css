@@ -477,3 +477,7 @@ input[type="range"] {
     grid-template-columns: 1fr;
   }
 }
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

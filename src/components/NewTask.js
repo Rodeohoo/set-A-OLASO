@@ -105,13 +105,15 @@ function NewTask() {
   };
 
   const deleteInfo = (index) => {
+    if (isEditing && currentIndex === index) {
+      return;
+    }
+
     const updatedTaskList = getAllTasks.filter((element, i) => i !== index);
     setAllTasks(updatedTaskList);
 
-    if (currentIndex === index) {
-      setIsEditing(false);
-      setCurrentIndex(null);
-      clearFields();
+    if (isEditing && index < currentIndex) {
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -288,6 +290,7 @@ function NewTask() {
         <div className="categoryGrid">
           <TaskCategory
             title="Not Important"
+            editingIndex={isEditing ? currentIndex : null}
             tasks={notImportantTasks}
             className="notImportantCategory"
             onDelete={deleteInfo}
@@ -295,6 +298,7 @@ function NewTask() {
           />
           <TaskCategory
             title="Standard"
+            editingIndex={isEditing ? currentIndex : null}
             tasks={standardTasks}
             className="standardCategory"
             onDelete={deleteInfo}
@@ -302,6 +306,7 @@ function NewTask() {
           />
           <TaskCategory
             title="Important"
+            editingIndex={isEditing ? currentIndex : null}
             tasks={importantTasks}
             className="importantCategory"
             onDelete={deleteInfo}

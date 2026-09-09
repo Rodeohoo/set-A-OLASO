@@ -1,7 +1,7 @@
 import TaskDetails from "./TaskDetails";
 
 function TaskCategory(props) {
-  const { title, tasks, className, onDelete, onEdit } = props;
+  const { title, tasks, className, onDelete, onEdit, editingIndex } = props;
 
   return (
     <div className={`categoryColumn ${className}`}>
@@ -17,6 +17,7 @@ function TaskCategory(props) {
               key={element.originalIndex}
               task={element.task}
               number={index + 1}
+              isEditing={element.originalIndex === editingIndex}
               onDelete={() => onDelete(element.originalIndex)}
               onEdit={() => onEdit(element.originalIndex)}
             />

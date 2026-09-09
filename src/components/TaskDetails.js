@@ -1,5 +1,5 @@
 function TaskDetails(props) {
-  const { task, number, onDelete, onEdit } = props;
+  const { task, number, onDelete, onEdit, isEditing } = props;
 
   const priorityDisplay =
     task.priority <= 3
@@ -33,7 +33,7 @@ function TaskDetails(props) {
             <button className="editButton" onClick={onEdit}>
               Edit
             </button>
-            <button className="deleteButton" onClick={onDelete}>
+            <button className="deleteButton" onClick={onDelete} disabled={isEditing}>
               Delete
             </button>
           </div>
